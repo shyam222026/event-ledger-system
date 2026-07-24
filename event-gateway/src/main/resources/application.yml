@@ -33,10 +33,6 @@ management:
       show-details: always
       probes:
         enabled: true
-  endpoint:
-    health:
-      probes:
-        enabled: true
   prometheus:
     metrics:
       export:
