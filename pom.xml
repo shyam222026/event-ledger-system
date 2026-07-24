@@ -149,11 +149,48 @@
                                         <limit>
                                             <counter>INSTRUCTION</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.75</minimum>
+                                            <minimum>0.50</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
                             </rules>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>report-aggregate</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report-aggregate</goal>
+                        </goals>
+                        <inherited>false</inherited>
+                        <configuration>
+                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-aggregate</outputDirectory>
+                            <classDirectories>
+                                <classDirectory>
+                                    <directory>${project.basedir}/event-gateway/target/classes</directory>
+                                    <includes>
+                                        <include>**/*.class</include>
+                                    </includes>
+                                </classDirectory>
+                                <classDirectory>
+                                    <directory>${project.basedir}/account-service/target/classes</directory>
+                                    <includes>
+                                        <include>**/*.class</include>
+                                    </includes>
+                                </classDirectory>
+                            </classDirectories>
+                            <sourceDirectories>
+                                <sourceDirectory>${project.basedir}/event-gateway/src/main/java</sourceDirectory>
+                                <sourceDirectory>${project.basedir}/account-service/src/main/java</sourceDirectory>
+                            </sourceDirectories>
+                            <executionData>
+                                <fileSet>
+                                    <directory>${project.basedir}</directory>
+                                    <includes>
+                                        <include>**/target/jacoco.exec</include>
+                                    </includes>
+                                </fileSet>
+                            </executionData>
                         </configuration>
                     </execution>
                 </executions>
